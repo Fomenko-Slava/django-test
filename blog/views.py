@@ -1,7 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.utils import timezone
 
-#from django.http import HttpResponse
-# import datetime
+#from mysite.utils_helper import prn
+from .models import Post
+
+from django.http import HttpResponse
+
+
+def index(request):
+    return HttpResponse("Hello, world. You're at the polls index.")
 
 
 def fib(num):
@@ -13,11 +20,17 @@ def fib(num):
 
 
 def post_list(request):
-    #html = ', '.join(str(x) for x in fib(8))
-    #html = 1/3
-    #return HttpResponse(html)
-    return render(request, 'blog/post_list.html', {})
+    # html = ', '.join(str(x) for x in fib(8))
+    # html = 1/3
+    # return HttpResponse(html)
 
-    #   now = datetime.datetime.now()
-    #   html = "<html><body>It is now %s.</body></html>" % now
-    #   return HttpResponse(html)
+    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    # prn(posts)
+    # print(posts)
+
+    return render(request, 'blog/post_list.html', {'posts': posts})
+
+
+def post_detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    return render(request, 'blog/post_detail.html', {'post': post})
