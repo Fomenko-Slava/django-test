@@ -20,15 +20,29 @@ def fib(num):
 
 
 def post_list(request):
-    # html = ', '.join(str(x) for x in fib(8))
-    # html = 1/3
-    # return HttpResponse(html)
+    html = ', '.join(str(x) for x in fib(8))
 
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    return HttpResponse(html)
+
+    # posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     # prn(posts)
     # print(posts)
 
-    return render(request, 'blog/post_list.html', {'posts': posts})
+    #return render(request, 'blog/post_list.html', {'posts': posts})
+
+x = 50
+
+
+def func(x):
+    x = 10
+    print('x равен', x)
+    x = 2
+    print('Замена локального x на', x)
+    html = ';wqeq'
+    return HttpResponse(html)
+
+#func()
+#print('x по-прежнему', x)
 
 
 def post_detail(request, pk):
