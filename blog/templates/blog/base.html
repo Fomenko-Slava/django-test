@@ -1,0 +1,26 @@
+{#% load utils_tags %#}
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <title>Title</title>
+</head>
+<body>
+    <div class="wrap_all">
+        <h1 class="head">Мои записи</h1>
+        <div class="all_posts">
+
+            {% block content %}
+
+            {% endblock %}
+
+        </div>
+    </div>
+</body>
+</html>
